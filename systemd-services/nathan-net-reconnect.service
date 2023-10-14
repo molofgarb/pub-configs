@@ -1,0 +1,11 @@
+[Unit]
+Description=Nathan's Internet Reconnect Daemon
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/sbin/nathan-net-reconnect.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
