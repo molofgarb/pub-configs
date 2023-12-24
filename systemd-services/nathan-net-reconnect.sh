@@ -23,6 +23,17 @@ main() {
 }
 
 check_network() {
+	err=0
+	for (( i=0; i < 10; i++ )); do
+		check_network1
+		err=$?
+		if [ $err -eq 0 ]; then return $err; fi
+		sleep 10
+	done
+	return $err
+}
+
+check_network1() {
     ping -c 1 9.9.9.9
     if [ $? -eq 0 ]; then return $?; fi
 

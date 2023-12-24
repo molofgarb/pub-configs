@@ -1,16 +1,13 @@
 # Todo
 
-- Syncthing container thing
+- set up PKI to go with DNS
+- Syncthing Node sync container thing
 - NAS (TrueNAS or OMV)
 - OPNsense testing
 - Windows Server AD thing
 
 - OpenBSD testing
 - Jellyfin Container
-- xv6 testing
-
-- ~~Kali VM~~
-- ~~Electronics Desktop Simulator testing~~
 
 ---
 
@@ -35,7 +32,7 @@
     - To install on Windows, mount the VirtIO disk in local to the Windows guest and run the .msi in the root of the mounted driver disk
 11. Set the DNS server on the VM to be the DNS VM (with Unbound DNS server)
 12. In the Arch template, make sure that pacman, .zsh, and paru have been configured, set the shutdown timeout, and set visudo, start ssh
-13. In the Windows template, remember to make a new user, download chocolatey, disable startup programs, enable RDP, cap the pagefile, edit hostfile if necessary, and adjust sleep settings
+13. In the Windows template, remember to make a new user, download chocolatey, disable startup programs, enable RDP, cap the pagefile, edit hostfile if necessary, remove bloatware, adjust sleep settings, and disable hibernate ```powercfg -h off```
 
 ---
 
@@ -91,6 +88,32 @@ Ask nathan for the root password for the templates.
    11. Make sure the correct network driver is used. If you have a Realtek RTL8111, see https://www.reddit.com/r/Proxmox/comments/150stgh/proxmox_8_rtl8169_nic_dell_micro_formfactors_in/ and https://medium.com/@pattapongj/how-to-fix-network-issues-after-upgrading-proxmox-from-7-to-8-and-encountering-the-r8169-error-d2e322cc26ed
    12. Set up unbound, configure /etc/unbound/unbound.conf.d/main.conf, local.conf, and blacklist-*.conf. Make sure that unbound can get queries from all interfaces, you give access control to the entire local ip range, you set up the forward nameservers, you add local-data for LAN domain queries, and set up the blocklist according to Steven Black's hostfile and the hostfile->conf converter script
 
+# Packages to Install on Base Arch Template
+```
+arch-install-scripts
+base
+base-devel
+btop
+docker
+efibootmgr
+git
+grub
+iotop
+linux
+linux-firmware
+lsof
+man-db
+nano neofetch
+neovim
+openssh
+paru
+powertop
+qemu-guest-agent
+tealdeer
+vim
+wget
+zsh
+```
 # Utilities for System Monitoring
 
 - ```btop``` for general system monitoring

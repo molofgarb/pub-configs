@@ -172,9 +172,9 @@ user_pref("ui.systemUsesDarkTheme", 1); // [FF67+] [HIDDEN PREF]
 //Section 3: Misc changes (mostly personal prefrence)
 user_pref("browser.compactmode.show", true); //compact mode is displayed by default
 user_pref("privacy.spoof_english", 2); //spoofs english by default
-user_pref("network.trr.mode", 2); //set DoH to custom adress
-user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query"); //custom adress 
-user_pref("network.trr.uri", "https://dns.quad9.net/dns-query"); //custom adress 
+//user_pref("network.trr.mode", 2); //set DoH to custom address
+//user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query"); //custom adress 
+//user_pref("network.trr.uri", "https://dns.quad9.net/dns-query"); //custom adress 
 
 // temp files
 user_pref("browser.download.start_downloads_in_tmp_dir", true); 
