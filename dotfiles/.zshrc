@@ -4,10 +4,12 @@ else
     echo ~/.zsh/.zshrc_local not found
 fi
 
+export EDITOR='vim'
+export VISUAL='vim'
 
 alias reload='source ~/.zshrc'
-alias zshrc='nano ~/.zshrc'
-alias zshrc_local='nano ~/.zsh/.zshrc_local'
+alias zshrc='$EDITOR ~/.zshrc'
+alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
 
 alias please='sudo $(fc -ln -1)'
 

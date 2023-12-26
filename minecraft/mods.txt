@@ -1,0 +1,13 @@
+https://mediafilez.forgecdn.net/files/4725/190/Terralith_1.20.1_v2.4.5.jar
+https://mediafilez.forgecdn.net/files/4655/668/Incendium_1.20.1_v5.3.1.jar
+https://mediafilez.forgecdn.net/files/4677/638/Nullscape_1.20.1_v1.2.2.jar
+https://mediafilez.forgecdn.net/files/4630/983/Structory_1.20.1_v1.3.2.jar
+https://mediafilez.forgecdn.net/files/4630/986/Structory_Towers_1.20.1_v1.0.3.jar
+
+https://mediafilez.forgecdn.net/files/4959/531/alexsmobs-1.22.7.jar
+https://mediafilez.forgecdn.net/files/4848/887/citadel-2.4.9-1.20.1.jar
+
+https://mediafilez.forgecdn.net/files/4976/547/aether-1.20.1-1.0.0-neoforge.jar
+https://mediafilez.forgecdn.net/files/4865/711/twilightforest-1.20.1-4.3.1893-universal.jar
+
+https://mediafilez.forgecdn.net/files/4933/782/Xaeros_Minimap_23.9.3_Forge_1.20.jar

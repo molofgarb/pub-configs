@@ -16,7 +16,7 @@ main() {
         if [ $err -eq 1 ]; then ifreload -a; fi
 
         # hard restart
-        if [ $err -eq 2 ]; then systemctl restart networking; fi
+        #if [ $err -eq 2 ]; then systemctl restart networking; fi
 
         sleep 90
     done

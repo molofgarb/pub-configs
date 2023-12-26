@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  mc:
+    container_name: minecraft-1
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    ports:
+      - 25565:25565
+    environment:
+      EULA: true
+      SERVER_NAME: nathan's server
+      MOTD: nathan's server
+      
+      DIFFICULTY: hard
+      SEED:
+      ENABLE_WHITELIST: true
+      WHITELIST_FILE: /whitelist.json
+      MEMORY: 7G
+
+      # TYPE: VANILLA
+      TYPE: FORGE
+      VERSION: 1.20.1
+      MODS_FILE: /mods.txt
+    volumes:
+      - ./data:/data
+      - ./whitelist.json:/whitelist.json:ro
+      - ./mods.txt:/mods.txt:ro
+    restart: unless-stopped
+
+  restore-backup:
+    # Same image as mc, but any base image with bash and tar will work
+    image: itzg/mc-backup
+    restart: no
+    entrypoint: restore-tar-backup
+    volumes:
+      # Must be same mount as mc service, needs to be writable
+      - ./data:/data
+      # Must be same mount as backups service, but can be read-only
+      - ./backups:/backups:ro
+
+  backups:
+    image: itzg/mc-backup
+    depends_on:
+      mc:
+        condition: service_healthy
+    environment:
+      BACKUP_NAME: world
+      BACKUP_INTERVAL: "2d"
+      RCON_HOST: mc
+      # since this service waits for mc to be healthy, no initial delay is needed
+      INITIAL_DELAY: 0
+    volumes:
+      - ./data:/data:ro
+      - ./backups:/backups
