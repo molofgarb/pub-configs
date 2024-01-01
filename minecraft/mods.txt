@@ -11,3 +11,6 @@ https://mediafilez.forgecdn.net/files/4976/547/aether-1.20.1-1.0.0-neoforge.jar
 https://mediafilez.forgecdn.net/files/4865/711/twilightforest-1.20.1-4.3.1893-universal.jar
 
 https://mediafilez.forgecdn.net/files/4933/782/Xaeros_Minimap_23.9.3_Forge_1.20.jar
+
+https://mediafilez.forgecdn.net/files/4984/832/embeddium-0.2.16%2Bmc1.20.1.jar
+https://mediafilez.forgecdn.net/files/4982/356/canary-mc1.20.1-0.2.10.jar
