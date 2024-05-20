@@ -14,7 +14,7 @@ main() {
 
         # log and restart the network service and interfaces if no network at all
         if [ $err -eq 1 ]; then
-            echo [$(date)] Network down, shutting down now >> /var/log/nathan-minecraft.log
+            echo [$(date +%Y-%m-%d-%H:%M:%S)] Network down, shutting down now >> /var/log/nathan-minecraft.log
             shutdown now
         fi
 

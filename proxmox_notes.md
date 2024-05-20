@@ -43,7 +43,7 @@
 
 ## Proxmox Host Migration
 
-1. Backup /etc/pve and rename the node 
+1. Backup /etc/pve and rename the node
     - https://pve.proxmox.com/wiki/Renaming_a_PVE_node
 2. Set up PAM users: first set up the user (and their home directory) using the host shell, then
    add those users to PVE using the web GUI
@@ -51,8 +51,9 @@
    Make sure that the service is enabled and that you check the status to see that it runs without error.
 4. Set up CPU temperature monitoring
     - https://www.reddit.com/r/homelab/comments/rhq56e/displaying_cpu_temperature_in_proxmox_summery_in/
+        - ```/usr/share/pve-manager/js/pvemanagerlib.js```
         - Make sure to make a backup file with the modified UI settings so that you can restore after every update
-5. Get rid of subscription notice 
+5. Get rid of subscription notice
     - https://github.com/foundObjects/pve-nag-buster/
 6. Perform system update and install standard tools for system monitoring and text editing
     - ```sudo apt update && sudo apt upgrade && sudo apt install btop iotop powertop lm-sensors vim nano git wget```
@@ -60,16 +61,16 @@
     - https://www.reddit.com/r/Proxmox/comments/tgojp1/removing_proxmox_subscription_notice/
 8. Set zfs to low disk IO
     - https://www.reddit.com/r/Proxmox/comments/u129sw/suggestions_to_decreasing_wearout_of_ssds_in/
-9. Set CPU frequency scaling to ondemand: 
-    - https://www.reddit.com/r/Proxmox/comments/zt79ib/can_proxmox_reduce_the_number_of_cpu_cores_or_cpu/j1dqwu5/ 
+9. Set CPU frequency scaling to ondemand:
+    - https://www.reddit.com/r/Proxmox/comments/zt79ib/can_proxmox_reduce_the_number_of_cpu_cores_or_cpu/j1dqwu5/
     - https://forum.proxmox.com/threads/fix-always-high-cpu-frequency-in-proxmox-host.84270/
     - https://www.reddit.com/r/homelab/comments/bltm26/proxmox_power_usagemanagement_still_no_cpu_scaling/emul6ek/
 10. Make sure ssh server is up
     - ```sudo systemctl enable sshd```
 11. Make sure that shutdown timer is correct in /etc/system/system.conf
     - The timeout for killing/shutting a process should be ~3 seconds instead of 90 seconds
-12. Make sure the correct network driver is used. 
-    - If you have a Realtek RTL8111, see 
+12. Make sure the correct network driver is used.
+    - If you have a Realtek RTL8111, see
         - https://www.reddit.com/r/Proxmox/comments/150stgh/proxmox_8_rtl8169_nic_dell_micro_formfactors_in/
         - https://medium.com/@pattapongj/how-to-fix-network-issues-after-upgrading-proxmox-from-7-to-8-and-encountering-the-r8169-error-d2e322cc26ed
 13. Set up:

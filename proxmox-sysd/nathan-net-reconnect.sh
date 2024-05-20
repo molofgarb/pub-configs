@@ -7,7 +7,7 @@ main() {
 
         # log if something happened
         if [ $err -ne 0 ]; then 
-            echo [$(date)] Network down, ERROR is $err >> /var/log/nathan-net-reconnect.log
+            echo [$(date +%Y-%m-%d-%H:%M:%S)] Network down, ERROR is $err >> /var/log/nathan-net-reconnect.log
         fi
 
         # restart the network service and interfaces if something bad happened
