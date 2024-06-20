@@ -61,6 +61,7 @@
     - https://www.reddit.com/r/Proxmox/comments/tgojp1/removing_proxmox_subscription_notice/
 8. Set zfs to low disk IO
     - https://www.reddit.com/r/Proxmox/comments/u129sw/suggestions_to_decreasing_wearout_of_ssds_in/
+    - https://www.reddit.com/r/Proxmox/comments/14ka64x/how_to_reduce_memory_used_by_zfs/
 9. Set CPU frequency scaling to ondemand:
     - https://www.reddit.com/r/Proxmox/comments/zt79ib/can_proxmox_reduce_the_number_of_cpu_cores_or_cpu/j1dqwu5/
     - https://forum.proxmox.com/threads/fix-always-high-cpu-frequency-in-proxmox-host.84270/

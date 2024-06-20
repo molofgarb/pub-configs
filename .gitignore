@@ -1,2 +1,4 @@
 whitelist.json
 *.zip
+
+.priv/
