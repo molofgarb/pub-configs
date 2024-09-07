@@ -74,11 +74,13 @@
     - If you have a Realtek RTL8111, see
         - https://www.reddit.com/r/Proxmox/comments/150stgh/proxmox_8_rtl8169_nic_dell_micro_formfactors_in/
         - https://medium.com/@pattapongj/how-to-fix-network-issues-after-upgrading-proxmox-from-7-to-8-and-encountering-the-r8169-error-d2e322cc26ed
+        - https://forum.proxmox.com/threads/unable-to-install-r8168-dkms-for-realtek-nic.137727/
 13. Set up:
     - Templates for Linux and Windows according to the instructions below
     - DNS with Unbound, configure /etc/unbound/unbound.conf.d/main.conf, local.conf, and blacklist-*.conf. Make sure that unbound can get queries from all interfaces, you give access control to the entire local ip range, you set up the forward nameservers, you add local-data for LAN domain queries, and set up the blocklist according to Steven Black's hostfile and the hostfile->conf converter script. This should probably be done in a Docker container
     - AD, get a copy of the latest Windows Server ISO, activate it, and then set up the AD
     - NAS, use OpenMediaVault or TrueNAS Core and then set up an SMB share
+    - RPX with Nginx Reverse Proxy Manager and a PKI so that you can connect to local pages and GUIs with HTTPS
 
 ## Making a New VM Template
 

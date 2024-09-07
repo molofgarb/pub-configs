@@ -4,116 +4,18 @@ else
     echo ~/.zsh/.zshrc_local not found
 fi
 
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
+# aliases
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
+alias zshrcupdate='curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc'
 
-alias please='sudo $(fc -ln -1)'
-
-# see custom prompt setting below in ASAHI section
-
-# =====================================
-# ===== ASAHI =========================
-# =====================================
-
-# few terminal keybinds
-bindkey -e
-
-typeset -A key
-
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
-
-# setup key accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-
-# =====================================
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-if [[ -n ${terminfo[smkx]} ]] && [[ -n ${terminfo[rmkx]} ]]; then
-    function zle-line-init () {
-        echoti smkx
-    }
-    function zle-line-finish () {
-        echoti rmkx
-    }
-    zle -N zle-line-init
-    zle -N zle-line-finish  
-fi
-
-zle -N fake-enter; bindkey "^X^H" fake-enter
-
-# =====================================
-
-# colors
-autoload -U colors
-colors
-
-# =====================================
-
-# aliases
-alias mv='nocorrect mv'
-alias cp='nocorrect cp'
-alias rm='rm'
-alias mkdir='nocorrect mkdir'
-
-alias ls="ls --color=auto"
-alias ll="ls --color -l"
-alias la="ls --color -la"
-alias lt="ls --sort=time"
-alias lat="ls --color -la --sort=time"
-
-alias rh='fc -R'
-
-autoload run-help
-
-# =====================================
-
-# zsh parameters
-typeset -U path
-
-#cdpath=(. ~)
-DIRSTACKSIZE=60
-
-# Autoload zsh functions.
-fpath=(~/.zsh/functions $fpath)
-autoload -U ~/.zsh/functions/*(:t)
-
-fignore=(\~)
-
-LISTMAX=0
-LOGCHECK=60
-HISTSIZE=20000
-HISTFILE=~/.zsh_history
-MAILCHECK=1
-READNULLCMD=less
-REPORTTIME=15
-SAVEHIST=30000000
-TIMEFMT='%J  %*U user %*S system %P cpu (%*E wasted time).'
-watch=(all)
-WATCHFMT='%n %a %l from %m at %t.'
-WORDCHARS="${WORDCHARS:s#/#}"
-
-# =====================================
+# keybinds
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 
 # zsh options
 setopt \
@@ -152,91 +54,62 @@ setopt \
   hist_ignore_space \
   no_equals \
 
-# =====================================
-
-# modules
-autoload -U url-quote-magic bracketed-paste-magic
-zle -N self-insert url-quote-magic
-zle -N bracketed-paste bracketed-paste-magic
-
-# Enable auto-execution of functions.
-unset preexec_functions
-unset precmd_functions
-unset chpwd_functions
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
-
-# =====================================
-
-# Terminal title
-if [[ "$TERM" == xterm* ]] ; then
-  preexec_functions+='preexec_term_title'
-  precmd_functions+='precmd_term_title'
-fi
-
-# =====================================
-
 # prompt
 if [[ "$USER" == "root" ]] ; then
-	PROMPT=$'%B%F{red}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+	PROMPT=$'%B%F{red}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 else
 	preexec_functions+='preexec_update_git_vars'
 	precmd_functions+='precmd_update_git_vars'
 	chpwd_functions+='chpwd_update_git_vars'
-	#orig asahi
-	# PROMPT=$'%B%F{green}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{yellow}$(prompt_git_info)%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
-
-	# orig mine
-	# PROMPT="%F{10}%n%f%F{10}@%f%F{10}%m%f %F{yellow}%d%f %F{26}%?%f"$'\n'"%F{10}$ %F{255}"
 
 	PROMPT=$'%B%F{green}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 fi
 
-# =====================================
+# colors
+autoload -U colors
+colors
 
-# tab-completion
+#cdpath=(. ~)
+DIRSTACKSIZE=60
+
+# options
+fignore=(\~)
+LISTMAX=0
+LOGCHECK=60
+HISTSIZE=20000
+HISTFILE=~/.zsh_history
+SAVEHIST=30000000
+watch=(all)
+TIMEFMT='%J  %*U user %*S system %P cpu (%*E wasted time).'
+WATCHFMT='%n %a %l from %m at %t.'
+WORDCHARS="${WORDCHARS:s#/#}"
+setopt histignorealldups sharehistory
+
+# Use modern completion system
 autoload -Uz compinit
-[[ -d "${ZDOTDIR:-$HOME}/.zcompdumps" ]] || mkdir -m 0700 -p "${ZDOTDIR:-$HOME}/.zcompdumps"
-compinit -i -d "${ZDOTDIR:-$HOME}/.zcompdumps/${HOST%%.*}-$ZSH_VERSION"
+compinit
 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu select=1
-zstyle ':completion::complete:cd::' tag-order '! users' -
-zstyle ':completion::complete:-command-::' tag-order '! users' -
-
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-     /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
-zstyle ':completion:*:descriptions' format "- %d -"
-zstyle ':completion:*:corrections' format "- %d - (errors %e})"
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+# zstyles
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.(^1*)' insert-sections true
-zstyle ':completion:*' menu select
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:kill:*:processes' command "ps x"
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# =====================================
+# ==============================================================================
+# ===== VSCODIUM TO RECOGNIZE GIT BRANCH =======================================
+# ==============================================================================
 
-# misc functions
-stfu() {
-  "$@" &>/dev/null </dev/null
-}
-
-_comp_options=("${(@)_comp_options:#NO_ignoreclosebraces}")
-
-[[ -e ~/.shfuncs ]] && source ~/.shfuncs
-
-setopt notify
-
-# =====================================
-# ===== VSCODIUM TO RECOGNIZE GIT BRANCH ================
-# =====================================
 export fpath=(~/.zsh/functions $fpath)
 
 cd .
