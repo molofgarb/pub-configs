@@ -11,7 +11,7 @@ export VISUAL='nvim'
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
-alias zshrcupdate='curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc'
+alias zshrcupdate='curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc; reload'
 
 # keybinds
 bindkey "^[[1;5D" backward-word
