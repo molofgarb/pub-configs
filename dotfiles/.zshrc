@@ -11,11 +11,19 @@ export VISUAL='nvim'
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
-alias zshrcupdate='curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc; reload'
+alias zshrcupdate="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc; reload"
 
 # keybinds
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
+
+# enable auto-execution of functions
+unset preexec_functions
+unset precmd_functions
+unset chpwd_functions
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions
 
 # zsh options
 setopt \
