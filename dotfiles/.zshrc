@@ -1,9 +1,3 @@
-if [ -f ~/.zsh/.zshrc_local ]; then
-    source ~/.zsh/.zshrc_local 
-else
-    echo ~/.zsh/.zshrc_local not found
-fi
-
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -123,3 +117,13 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 export fpath=(~/.zsh/functions $fpath)
 
 cd .
+
+# ==============================================================================
+# ===== zshrc_local override ===================================================
+# ==============================================================================
+
+if [ -f ~/.zsh/.zshrc_local ]; then
+    source ~/.zsh/.zshrc_local 
+else
+    echo ~/.zsh/.zshrc_local not found
+fi
