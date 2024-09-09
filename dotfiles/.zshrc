@@ -17,7 +17,9 @@ alias zshrcupdate="curl https://raw.githubusercontent.com/molofgarb/molofgarb-sy
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
-# enable auto-execution of functions
+# enable auto-execution of functions, load modules, load functions
+fpath=(~/.zsh/functions $fpath)
+autoload -U ~/.zsh/functions/*(:t)
 unset preexec_functions
 unset precmd_functions
 unset chpwd_functions
