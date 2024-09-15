@@ -10,6 +10,8 @@ alias zshrcupdate="curl https://raw.githubusercontent.com/molofgarb/molofgarb-sy
 # keybinds
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
+bindkey -v
+bindkey '^R' history-incremental-search-backward
 
 # enable auto-execution of functions, load modules, load functions
 fpath=(~/.zsh/functions $fpath)
