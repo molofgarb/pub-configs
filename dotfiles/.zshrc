@@ -7,6 +7,7 @@ alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
 alias zshrcupdate="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc; reload"
 git-fastcommit() {
+  if [[ "$1" -eq "" ]]; then return 1; fi
   git status && git add -A && git commit -sm "$1" && git push
 }
 
