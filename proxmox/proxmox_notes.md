@@ -108,6 +108,7 @@
     - set the shutdown timeout
     - set visudo, start ssh
     - clean pacman cache using ```sudo pacman -Sccd```
+    - edit pacman.conf to allow colors and 10 parallel downloads
 14. In the Windows template, remember to:
     - Make a new user
     - Download chocolatey
