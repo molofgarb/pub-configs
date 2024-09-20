@@ -19,6 +19,8 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 
+export LC_CTYPE=en_US.UTF-8
+
 # enable auto-execution of functions, load modules, load functions
 fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
