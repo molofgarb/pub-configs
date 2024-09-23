@@ -1,7 +1,5 @@
 . ~\Documents\PowerShell\Microsoft.PowerShell_profile_local.ps1
 
-Set-Location ~
-
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
