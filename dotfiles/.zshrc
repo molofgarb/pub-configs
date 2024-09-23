@@ -6,6 +6,10 @@ alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
 alias zshrcupdate="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc; reload"
+git-fastcommit() {
+  if [ "$1" -eq "" ]; then return 1; fi
+  git status && git add -A && git commit -sm "$1" && git push
+}
 
 # keybinds
 bindkey "^[[1;5D" backward-word
@@ -14,6 +18,8 @@ bindkey -v
 bindkey '^R' history-incremental-search-backward
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
+
+export LC_CTYPE=en_US.UTF-8
 
 # enable auto-execution of functions, load modules, load functions
 fpath=(~/.zsh/functions $fpath)
