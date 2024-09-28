@@ -12,14 +12,11 @@ git-fastcommit() {
 }
 
 # keybinds
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-bindkey -v 
-bindkey '^R' history-incremental-search-backward
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-
-export LC_CTYPE=en_US.UTF-8
+if [ "$(command -v fzf)" ]; then
+        source <(fzf --zsh)
+fi
+bindkey -e
+bindkey -v
 
 # enable auto-execution of functions, load modules, load functions
 fpath=(~/.zsh/functions $fpath)
@@ -70,13 +67,13 @@ setopt \
 
 # prompt
 if [[ "$USER" == "root" ]] ; then
-	PROMPT=$'%B%F{red}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+        PROMPT=$'%B%F{red}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 else
-	preexec_functions+='preexec_update_git_vars'
-	precmd_functions+='precmd_update_git_vars'
-	chpwd_functions+='chpwd_update_git_vars'
+        preexec_functions+='preexec_update_git_vars'
+        precmd_functions+='precmd_update_git_vars'
+        chpwd_functions+='chpwd_update_git_vars'
 
-	PROMPT=$'%B%F{green}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+        PROMPT=$'%B%F{green}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 fi
 
 # colors
@@ -133,7 +130,7 @@ cd .
 # ==============================================================================
 
 if [ -f ~/.zsh/.zshrc_local ]; then
-    source ~/.zsh/.zshrc_local 
+    source ~/.zsh/.zshrc_local
 else
     echo ~/.zsh/.zshrc_local not found
 fi
