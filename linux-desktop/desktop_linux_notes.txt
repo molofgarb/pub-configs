@@ -1,7 +1,0 @@
-- set quad9 doh server on firefox
-- update everything
-- download thunderbird daily from mozilla "ftp" server
-- set up word equivalent of stuff
-- set up steam
-- set up dns resolution
-- basically follow all the proxmox vm stuff and see if only of it applies
