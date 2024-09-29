@@ -1,3 +1,5 @@
+# molofgarb's zshrc
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -14,10 +16,16 @@ git-fastcommit() {
   git status && git add -A && git commit -sm "$1" && git push
 }
 
-# keybinds
+# plugins (fuzzybacksearch, syntax highlighting)
 if [ "$(command -v fzf)" ]; then
         source <(fzf --zsh)
 fi
+if [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+        source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
+fi
+
+# keybinds
 bindkey -e
 bindkey -v
 
