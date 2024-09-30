@@ -7,7 +7,7 @@ export VISUAL='nvim'
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
-alias zshrc-update="curl -H \"Cache-Control: no-cache, no-store\" https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc; reload"
+alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc && curl -H \"Cache-Control: no-cache, no-store\" https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc && reload"
 alias ls='ls --color=auto --group-directories-first -l'
 alias la='ls -a'
 alias grep='grep --color=auto'
