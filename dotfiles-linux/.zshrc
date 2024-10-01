@@ -7,7 +7,7 @@ export VISUAL='nvim'
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
-alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc && curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles/.zshrc -o ~/.zshrc && reload"
+alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc && curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc && reload"
 alias ls='ls --color=auto --group-directories-first -l'
 alias la='ls -a'
 alias grep='grep --color=auto'
@@ -20,13 +20,19 @@ git-fastcommit() {
 if [ "$(command -v fzf)" ]; then
         source <(fzf --zsh)
 fi
-if [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+if [ "$(uname)" == "Linux" -a -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
         source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
+        ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
 fi
-if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+if [ "$(uname)" == "Darwin" -a -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
 	source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
+        ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+fi
+if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
+	ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
+	ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
+	ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
+	ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
 fi
 
 # keybinds
