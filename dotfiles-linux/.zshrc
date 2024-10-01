@@ -7,7 +7,9 @@ export VISUAL='nvim'
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
-alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc && curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc && reload"
+alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc > /dev/null && 
+curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc && 
+reload"
 alias ls='ls --color=auto --group-directories-first -l'
 alias la='ls -a'
 alias grep='grep --color=auto'
