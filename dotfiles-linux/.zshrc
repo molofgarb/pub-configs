@@ -22,13 +22,15 @@ git-fastcommit() {
 if [ "$(command -v fzf)" ]; then
         source <(fzf --zsh)
 fi
-if [ "$(uname)" == "Linux" -a -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+if [ "$(uname)" = "Linux" -a -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
         source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
 fi
-if [ "$(uname)" == "Darwin" -a -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-	source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+if [ "$(uname)" = "Darwin" ]; then
+	if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+		source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        	ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+	fi
 fi
 if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
 	ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
