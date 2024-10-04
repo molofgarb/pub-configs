@@ -7,8 +7,8 @@ export VISUAL='nvim'
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
-alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc > /dev/null && 
-curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc && 
+alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc > /dev/null &&
+curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc &&
 reload"
 alias ls='ls --color=auto --group-directories-first -l'
 alias la='ls -a'
@@ -27,21 +27,25 @@ if [ "$(uname)" = "Linux" -a -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/
         ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
 fi
 if [ "$(uname)" = "Darwin" ]; then
-	if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-		source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        	ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
-	fi
+        if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+                source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+                ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+        fi
 fi
 if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
-	ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
-	ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
-	ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
-	ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
+        ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
+        ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
+        ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
+        ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
 fi
 
 # keybinds
 bindkey -e
-bindkey -v
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^H' backward-kill-word
+bindkey '^[[3;5~' kill-word
+
 
 # enable auto-execution of functions, load modules, load functions
 fpath=(~/.zsh/functions $fpath)
