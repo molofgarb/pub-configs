@@ -81,6 +81,7 @@
     - AD, get a copy of the latest Windows Server ISO, activate it, and then set up the AD
     - NAS, use OpenMediaVault or TrueNAS Core and then set up an SMB share
     - RPX with Nginx Reverse Proxy Manager and a PKI so that you can connect to local pages and GUIs with HTTPS
+        - Add Root CA's certificate (RPX and PVE) to your browser
 
 ## Making a New VM Template
 
