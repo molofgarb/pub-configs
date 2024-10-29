@@ -14,7 +14,7 @@ alias ls='ls --color=auto --group-directories-first -l'
 alias la='ls -a'
 alias grep='grep --color=auto'
 git-fastcommit() {
-  if [ "$1" -eq "" ]; then return 1; fi
+  if [ "$1" = "" ]; then return 1; fi
   git status && git add -A && git commit -sm "$1" && git push
 }
 
