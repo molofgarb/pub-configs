@@ -10,8 +10,8 @@ alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
 alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc > /dev/null &&
 curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc &&
 reload"
-alias vimrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.vimrc > /dev/null &&
-curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.vimrc -o ~/.vimrc"
+alias nvim-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim > /dev/null &&
+curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim -o ~/.config/nvim/init.vim"
 alias ls='ls --color=auto --group-directories-first -l'
 alias la='ls -a'
 alias grep='grep --color=auto'
