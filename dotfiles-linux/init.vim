@@ -1,4 +1,7 @@
-set numbers
+" linux: ~/.config/nvim/init.vim
+" windows: ~/AppData/Local/nvim/init.vim
+
+set number
 
 set autoindent
 filetype plugin indent on
