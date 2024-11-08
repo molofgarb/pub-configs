@@ -15,6 +15,7 @@ curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/d
 alias ls='ls --color=auto --group-directories-first -l'
 alias la='ls -a'
 alias grep='grep --color=auto'
+
 git-fastcommit() {
   if [ "$1" = "" ]; then return 1; fi
   git status && git add -A && git commit -sm "$1" && git push
@@ -47,7 +48,6 @@ bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
-
 
 # enable auto-execution of functions, load modules, load functions
 fpath=(~/.zsh/functions $fpath)
