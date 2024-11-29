@@ -134,6 +134,7 @@ cronie
 docker
 docker-compose
 efibootmgr
+fzf
 git
 grub
 iotop
@@ -147,6 +148,7 @@ openssh
 paru
 powertop
 qemu-guest-agent
+ripgrep
 tcpdump
 tealdeer
 vim
