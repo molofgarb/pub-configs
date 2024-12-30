@@ -14,6 +14,7 @@ alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-s
 curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc &&
 reload"
 alias nvim-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim > /dev/null &&
+mkdir ~/.config/nvim &&
 curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim -o ~/.config/nvim/init.vim"
 alias ls='ls --color=auto --group-directories-first -lh'
 alias la='ls -ah'
