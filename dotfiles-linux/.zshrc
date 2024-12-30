@@ -1,4 +1,7 @@
 # molofgarb's zshrc
+# you probably need to install:
+#   - zsh-syntax-highlighting
+#   - fzf
 
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -12,8 +15,8 @@ curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/d
 reload"
 alias nvim-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim > /dev/null &&
 curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim -o ~/.config/nvim/init.vim"
-alias ls='ls --color=auto --group-directories-first -l'
-alias la='ls -a'
+alias ls='ls --color=auto --group-directories-first -lh'
+alias la='ls -ah'
 alias grep='grep --color=auto'
 
 git-fastcommit() {
