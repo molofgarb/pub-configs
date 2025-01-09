@@ -64,7 +64,9 @@ typeset -ga precmd_functions
 typeset -ga chpwd_functions
 
 # zsh options
+# aliases: expands aliases in noninteractive shell
 setopt \
+  aliases \
   auto_cd \
   auto_name_dirs \
   auto_pushd \
