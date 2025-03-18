@@ -5,6 +5,7 @@
 
 export EDITOR='nvim'
 export VISUAL='nvim'
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # aliases
 alias reload='source ~/.zshrc'
@@ -21,29 +22,29 @@ alias la='ls -ah'
 alias grep='grep --color=auto'
 
 git-fastcommit() {
-  if [ "$1" = "" ]; then return 1; fi
-  git status && git add -A && git commit -sm "$1" && git push
+    if [ "$1" = "" ]; then return 1; fi
+    git status && git add -A && git commit -sm "$1" && git push
 }
 
 # plugins (fuzzybacksearch, syntax highlighting)
 if [ "$(command -v fzf)" ]; then
-        source <(fzf --zsh)
+    source <(fzf --zsh)
 fi
 if [ "$(uname)" = "Linux" -a -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-        source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
 fi
 if [ "$(uname)" = "Darwin" ]; then
-        if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-                source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-                ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
-        fi
+    if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+        source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+    fi
 fi
 if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
-        ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
-        ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
-        ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
-        ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
+    ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
 fi
 
 # keybinds
@@ -104,13 +105,13 @@ setopt \
 
 # prompt
 if [[ "$USER" == "root" ]] ; then
-        PROMPT=$'%B%F{red}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+    PROMPT=$'%B%F{red}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 else
-        preexec_functions+='preexec_update_git_vars'
-        precmd_functions+='precmd_update_git_vars'
-        chpwd_functions+='chpwd_update_git_vars'
+    preexec_functions+='preexec_update_git_vars'
+    precmd_functions+='precmd_update_git_vars'
+    chpwd_functions+='chpwd_update_git_vars'
 
-        PROMPT=$'%B%F{green}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+    PROMPT=$'%B%F{green}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 fi
 
 # colors
