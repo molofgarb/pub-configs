@@ -2,6 +2,7 @@
 # you probably need to install:
 #   - zsh-syntax-highlighting
 #   - fzf
+#   - vim-plug
 
 export EDITOR='nvim'
 export VISUAL='nvim'
