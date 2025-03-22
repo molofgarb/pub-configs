@@ -4,30 +4,31 @@
 #   - fzf
 #   - vim-plug
 
+# ===== Variables =====
 export EDITOR='nvim'
 export VISUAL='nvim'
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
-# aliases
+# ===== Aliases =====
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
 alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc > /dev/null &&
-curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc &&
-reload"
+    curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc &&
+    reload"
 alias nvim-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim > /dev/null &&
-mkdir ~/.config/nvim &&
-curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim -o ~/.config/nvim/init.vim"
+    mkdir ~/.config/nvim &&
+    curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim -o ~/.config/nvim/init.vim"
 alias ls='ls --color=auto --group-directories-first -lh'
 alias la='ls -ah'
 alias grep='grep --color=auto'
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 git-fastcommit() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git push
 }
 
-# plugins (fuzzybacksearch, syntax highlighting)
+# ===== Plugins (fuzzybacksearch, syntax highlighting) =====
 if [ "$(command -v fzf)" ]; then
     source <(fzf --zsh)
 fi
@@ -48,14 +49,14 @@ if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
     ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
 fi
 
-# keybinds
+# ===== Keybinds =====
 bindkey -e
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
 
-# enable auto-execution of functions, load modules, load functions
+# ===== Enable auto-execution of functions, load modules, load functions =====
 fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
 unset preexec_functions
@@ -65,7 +66,7 @@ typeset -ga preexec_functions
 typeset -ga precmd_functions
 typeset -ga chpwd_functions
 
-# zsh options
+# ===== Zsh options =====
 # aliases: expands aliases in noninteractive shell
 setopt \
   aliases \
@@ -104,7 +105,7 @@ setopt \
   hist_ignore_space \
   no_equals \
 
-# prompt
+# ===== Prompt =====
 if [[ "$USER" == "root" ]] ; then
     PROMPT=$'%B%F{red}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 else
@@ -115,14 +116,14 @@ else
     PROMPT=$'%B%F{green}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 fi
 
-# colors
+# ===== Colors =====
 autoload -U colors
 colors
 
 #cdpath=(. ~)
 DIRSTACKSIZE=60
 
-# options
+# ===== Options =====
 fignore=(\~)
 LISTMAX=0
 LOGCHECK=60
@@ -135,11 +136,11 @@ WATCHFMT='%n %a %l from %m at %t.'
 WORDCHARS="${WORDCHARS:s#/#}"
 setopt histignorealldups sharehistory
 
-# Use modern completion system
+# ===== Use modern completion system =====
 autoload -Uz compinit
 compinit
 
-# zstyles
+# ===== Zstyles =====
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
