@@ -17,6 +17,9 @@ set expandtab "turn tabs into spaces
 set cc=80
 set cc=100
 
+" Scrolloff (keep cursor centered)
+set so=999
+
 " Syntax highlighting
 syntax on
 
