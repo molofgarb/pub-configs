@@ -1,6 +1,7 @@
 # molofgarb's zshrc
 # you probably need to install:
 #   - zsh-syntax-highlighting
+#   - zsh-autosuggestions
 #   - fzf
 #   - vim-plug
 
@@ -28,7 +29,7 @@ git-fastcommit() {
     git status && git add -A && git commit -sm "$1" && git push
 }
 
-# ===== Plugins (fuzzybacksearch, syntax highlighting, autocomplete) =====
+# ===== Plugins (fuzzybacksearch, syntax highlighting, autosuggestions, autocomplete) =====
 # fzf
 if [ "$(command -v fzf)" ]; then
     source <(fzf --zsh)
@@ -52,7 +53,12 @@ if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
     ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
 fi
 
-# Autocomplete
+# Autosuggestions
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Autocomplete (by pressing tab)
 autoload -Uz compinit
 compinit
 
