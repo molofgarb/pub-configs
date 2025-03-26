@@ -167,6 +167,12 @@ WATCHFMT='%n %a %l from %m at %t.'
 WORDCHARS="${WORDCHARS:s#/#}"
 setopt histignorealldups sharehistory
 
+# ===== Misc =====
+# Go home if the directory doesn't exist
+# if [ ! -d $(pwd) ]; then
+#   cd ~
+# fi
+
 # ==============================================================================
 # ===== VSCODIUM TO RECOGNIZE GIT BRANCH =======================================
 # ==============================================================================
