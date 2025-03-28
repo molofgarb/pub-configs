@@ -4,7 +4,6 @@
 #   - zsh-syntax-highlighting
 #   - zsh-completions
 #   - zsh-autosuggestions
-#   - zsh-autocomplete
 #   - vim-plug
 
 # ===== Variables =====
@@ -180,11 +179,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # Autosuggestions
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-# Autocomplete
-if [ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]; then
-    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
 
 # ==============================================================================
