@@ -1,8 +1,10 @@
 # molofgarb's zshrc
 # you probably need to install:
-#   - zsh-syntax-highlighting
-#   - zsh-autosuggestions
 #   - fzf
+#   - zsh-syntax-highlighting
+#   - zsh-completions
+#   - zsh-autosuggestions
+#   - zsh-autocomplete
 #   - vim-plug
 
 # ===== Variables =====
@@ -28,56 +30,6 @@ git-fastcommit() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git push
 }
-
-# ===== Plugins (fuzzybacksearch, syntax highlighting, autosuggestions, autocomplete) =====
-# fzf
-if [ "$(command -v fzf)" ]; then
-    source <(fzf --zsh)
-fi
-
-# Syntax highlighting
-if [ "$(uname)" = "Linux" -a -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
-fi
-if [ "$(uname)" = "Darwin" ]; then
-    if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-        source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
-    fi
-fi
-if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
-    ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
-    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
-    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
-    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
-fi
-
-# Autosuggestions
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
-# Autocomplete (by pressing tab)
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-#eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-
 
 # ===== Keybinds =====
 bindkey -e
@@ -147,10 +99,6 @@ else
     PROMPT=$'%B%F{green}%n%b%F{green}@%B%F{green}%m%b %B%F{yellow}%d%b%F{default}%F{red}$(prompt_git_info)%F{default} %F{blue}%?'$'\n''%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
 fi
 
-# ===== Colors =====
-autoload -U colors
-colors
-
 #cdpath=(. ~)
 DIRSTACKSIZE=60
 
@@ -172,14 +120,72 @@ setopt histignorealldups sharehistory
 # if [ ! -d $(pwd) ]; then
 #   cd ~
 # fi
+#autoload -U colors
+#colors
 
 # ==============================================================================
 # ===== VSCODIUM TO RECOGNIZE GIT BRANCH =======================================
 # ==============================================================================
 
-export fpath=(~/.zsh/functions $fpath)
+# export fpath=(~/.zsh/functions $fpath)
 
 cd .
+
+# ==============================================================================
+# ===== Plugins ================================================================ 
+# ==============================================================================
+# fzf
+if [ "$(command -v fzf)" ]; then
+    source <(fzf --zsh)
+fi
+
+# Syntax highlighting
+if [ "$(uname)" = "Linux" -a -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+fi
+if [ "$(uname)" = "Darwin" ]; then
+    if [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+        source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+    fi
+fi
+if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
+    ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
+    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
+    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
+    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
+fi
+
+# zsh-completions
+autoload -Uz compinit
+compinit
+ 
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+#eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+# Autosuggestions
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Autocomplete
+if [ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi
 
 # ==============================================================================
 # ===== zshrc_local override ===================================================
