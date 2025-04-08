@@ -5,6 +5,7 @@
 
 " Line numbers
 set number
+set relativenumber
 
 " Indentation settings
 set autoindent
