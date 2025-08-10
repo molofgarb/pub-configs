@@ -31,6 +31,7 @@ gitc() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git push
 }
+alias gpl='git pull'
 alias gdf='git diff'
 alias gs='git status'
 alias gitpl='git pull'
