@@ -1,3 +1,0 @@
-emulate -L zsh
-local -a cmd; cmd=(${(z)1})
-term_title "$cmd"
