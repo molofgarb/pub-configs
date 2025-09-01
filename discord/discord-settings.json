@@ -10,5 +10,7 @@
     "y": 1693,
     "width": 1440,
     "height": 866
-  }
+  },
+  "OPEN_ON_STARTUP": false,
+  "enableHardwareAcceleration": true
 }
