@@ -27,14 +27,14 @@ alias nvim-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-sy
     curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim -o ~/.config/nvim/init.vim"
 
 # Git aliases
-gitc() {
+gcommit() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git push
 }
 alias gpl='git pull'
+alias gph='git push'
 alias gdf='git diff'
 alias gs='git status'
-alias gitpl='git pull'
 
 # ===== Realiases =====
 # Use eza instead of ls, or set nice defaults for ls
