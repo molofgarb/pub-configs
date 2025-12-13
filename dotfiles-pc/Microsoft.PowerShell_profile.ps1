@@ -1,5 +1,3 @@
-. ~\Documents\PowerShell\Microsoft.PowerShell_profile_local.ps1
-
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
@@ -15,3 +13,5 @@ function profile-update {
     curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/refs/heads/main/dotfiles-pc/Microsoft.PowerShell_profile.ps1 -o ~\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
     & $profile
 }
+
+. ~\Documents\PowerShell\Microsoft.PowerShell_profile_local.ps1
