@@ -24,5 +24,6 @@
     "vim.useSystemClipboard": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "rewrap.wrappingColumn": 115
+    "rewrap.wrappingColumn": 115,
+    "terminal.integrated.defaultLocation": "editor"
 }
