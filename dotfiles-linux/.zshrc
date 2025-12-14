@@ -36,6 +36,7 @@ nvim-update() {
 }
 
 # Git aliases
+alias 'git diff'='git diff --word-diff=color'
 gcommit() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git push
