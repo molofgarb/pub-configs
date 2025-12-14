@@ -32,6 +32,7 @@ nvim-update() {
   if curl $initvim_url > /dev/null; then
     mkdir -p ~/.config/nvim 
     curl $initvim_url -o '~/.config/nvim/init.vim'
+    reload
   fi
 }
 
