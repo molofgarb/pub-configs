@@ -23,14 +23,14 @@ alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
 zshrc-update() {
   local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc'
   if curl $zshrc_url > /dev/null; then
-    curl $zshrc_url -o ~/.zshrc &&
+    curl $zshrc_url -o ~/.zshrc 
     reload
   fi
 }
 nvim-update() {
   local initvim_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim'
   if curl $initvim_url > /dev/null; then
-    mkdir -p ~/.config/nvim &&
+    mkdir -p ~/.config/nvim 
     curl $initvim_url -o '~/.config/nvim/init.vim'
   fi
 }
