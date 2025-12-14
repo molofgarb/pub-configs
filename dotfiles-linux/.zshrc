@@ -118,8 +118,6 @@ setopt \
   no_beep \
   cdable_vars \
   csh_null_glob \
-  correct \
-  correct_all \
   extended_glob \
   extended_history \
   no_glob_dots \
@@ -145,6 +143,8 @@ setopt \
   hist_ignore_space \
   no_equals \
   sharehistory
+  # correct \
+  # correct_all \
 
 #cdpath=(. ~)
 DIRSTACKSIZE=60
