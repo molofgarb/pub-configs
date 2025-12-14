@@ -1,4 +1,5 @@
 #!/bin/zsh
+# shellcheck disable=SC1071
 # molofgarb's zshrc
 # you probably need to install:
 #   - fzf
@@ -11,7 +12,7 @@
 # ===== CORE ===================================================================
 # ==============================================================================
 
-# ===== Variables =====
+# ===== env Variables =====
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -19,22 +20,32 @@ export VISUAL='nvim'
 alias reload='source ~/.zshrc'
 alias zshrc='$EDITOR ~/.zshrc'
 alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
-alias zshrc-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc > /dev/null &&
-    curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc -o ~/.zshrc &&
-    reload"
-alias nvim-update="curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim > /dev/null &&
+zshrc-update() {
+  local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc'
+  if curl $zshrc_url > /dev/null; then
+    curl $zshrc_url -o ~/.zshrc &&
+    reload
+  fi
+}
+nvim-update() {
+  local initvim_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim'
+  if curl $initvim_url > /dev/null; then
     mkdir -p ~/.config/nvim &&
-    curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim -o ~/.config/nvim/init.vim"
+    curl $initvim_url -o '~/.config/nvim/init.vim'
+  fi
+}
 
 # Git aliases
 gcommit() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git push
 }
-alias gpl='git pull'
-alias gph='git push'
-alias gdf='git diff'
-alias gs='git status'
+alias gr='  git rebase'
+alias gpl=' git pull'
+alias gph=' git push'
+alias gpsh='git push'
+alias gdf=' git diff'
+alias gs='  git status'
 
 # ===== Realiases =====
 # Use eza instead of ls, or set nice defaults for ls
@@ -60,8 +71,10 @@ fi
 # Set nice defaults for grep
 alias grep='grep --color=auto'
 
-# ssh rebind for ssh in kitty terminal
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+# ssh rebind for ssh in kitty terminal if not in an ssh session
+if [[ "$TERM" = "xterm-kitty" ]] && ! [[ "$SSH_TTY" ]]; then
+  alias ssh="kitty +kitten ssh"
+fi
 
 # ===== Keybinds =====
 bindkey -e

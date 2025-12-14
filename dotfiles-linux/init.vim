@@ -32,6 +32,9 @@ set ttyfast
 " Yank and paste to system clipboard
 set clipboard=unnamedplus
 
+" Swap p and P to not override unnamed register when pasting with p
+xnoremap p P
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ===== Plugins (vim-plug) =====
@@ -57,4 +60,3 @@ require('lualine').setup({
 })
 
 END
-
