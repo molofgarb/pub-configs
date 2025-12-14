@@ -17,13 +17,14 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # ===== Aliases =====
-alias reload='source ~/.zshrc'
-alias zshrc='$EDITOR ~/.zshrc'
-alias zshrc_local='$EDITOR ~/.zsh/.zshrc_local'
+alias      reload="source $0"
+alias       zshrc="$EDITOR $0"
+alias zshrc_local="$EDITOR $(basename $0)/.zsh/.zshrc_local"
 zshrc-update() {
   local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc'
   if curl $zshrc_url > /dev/null; then
     curl $zshrc_url -o ~/.zshrc 
+    reload
   fi
 }
 nvim-update() {
@@ -31,6 +32,7 @@ nvim-update() {
   if curl $initvim_url > /dev/null; then
     mkdir -p ~/.config/nvim 
     curl $initvim_url -o '~/.config/nvim/init.vim'
+    reload
   fi
 }
 
@@ -40,12 +42,12 @@ gcommit() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git push
 }
-alias gr='  git rebase'
-alias gpl=' git pull'
-alias gph=' git push'
+alias   gr='git rebase'
+alias  gpl='git pull'
+alias  gph='git push'
 alias gpsh='git push'
-alias gdf=' git diff'
-alias gs='  git status'
+alias  gdf='git diff'
+alias   gs='git status'
 
 # ===== Realiases =====
 # Use eza instead of ls, or set nice defaults for ls
