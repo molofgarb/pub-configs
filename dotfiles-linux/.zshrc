@@ -15,10 +15,11 @@
 # ===== env Variables =====
 export EDITOR='nvim'
 export VISUAL='nvim'
+export ZSHRC_PATH='~/.zshrc'
 
 # ===== Aliases =====
-alias      reload="source $0"
-alias       zshrc="$EDITOR $0"
+alias reload="source $ZSHRC_PATH"
+alias zshrc="$EDITOR $ZSHRC_PATH"
 alias zshrc_local="$EDITOR $(basename $0)/.zsh/.zshrc_local"
 zshrc-update() {
   local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc'
