@@ -40,7 +40,7 @@ nvim-update() {
 alias 'git diff'='git diff --word-diff=color'
 gcommit() {
     if [ "$1" = "" ]; then return 1; fi
-    git status && git add -A && git commit -sm "$1" && git push
+    git status && git add -A && git commit -sm "$1" && git pull && git push
 }
 alias   gr='git rebase'
 alias  gpl='git pull'
