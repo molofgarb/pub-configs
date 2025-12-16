@@ -32,7 +32,7 @@ nvim-update() {
   local initvim_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim'
   if curl $initvim_url > /dev/null; then
     mkdir -p ~/.config/nvim 
-    curl $initvim_url -H 'Cache-Control: no-cache, no-store' -o '~/.config/nvim/init.vim'
+    curl $initvim_url -H 'Cache-Control: no-cache, no-store' -o ~/.config/nvim/init.vim
     reload
   fi
 }
