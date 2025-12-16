@@ -16,15 +16,16 @@
     "workbench.colorTheme": "Theme",
     "telemetry.telemetryLevel": "off",
     "glassit.alpha": 20,
-    "workbench.colorTheme": "Theme",
     "glassit.force_sway": true,
     "shellcheck.ignorePatterns": {
         "**/*.zshrc": false
     },
     "vim.useSystemClipboard": true,
-    "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "rewrap.wrappingColumn": 115,
     "terminal.integrated.defaultLocation": "editor",
-    "editor.lineNumbers": "relative"
+    "editor.lineNumbers": "relative",
+    "vim.statusBarColors.searchinprogressmode": "",
+    "vim.leader": " ",
+    "vim.hlsearch": true,
 }

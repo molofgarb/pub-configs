@@ -12,6 +12,9 @@
 ## Text Editing
 - Vim
 
+## Source Control
+- GitLens
+
 ## Languages
 ### Bash
 - Shellcheck
