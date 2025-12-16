@@ -1,5 +1,6 @@
 " linux: ~/.config/nvim/init.vim
 " windows: ~/AppData/Local/nvim/init.vim
+" :PlugInstall to install plugins
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
