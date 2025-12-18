@@ -30,4 +30,5 @@
     "vim.leader": " ",
     "vim.hlsearch": true,
     "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.enablePreview": false,
 }
