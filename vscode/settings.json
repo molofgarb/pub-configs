@@ -18,7 +18,8 @@
     "glassit.alpha": 20,
     "glassit.force_sway": true,
     "shellcheck.ignorePatterns": {
-        "**/*.zshrc": false
+        "**/*.zshrc": false,
+        "": true
     },
     "vim.useSystemClipboard": true,
     "files.trimFinalNewlines": true,
