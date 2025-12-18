@@ -4,6 +4,7 @@
 
 ## Visual
 - Theme
+- Material Icon Theme
 - Glassit-vsc
 
 ## Visual Helper
@@ -16,8 +17,10 @@
 - GitLens
 
 ## Languages
-### Bash
+### Bash/Zsh
 - Shellcheck
+- Bash Debug
+- Zsh Debug
 
 ### Python
 - Python

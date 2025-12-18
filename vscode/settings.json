@@ -29,4 +29,5 @@
     "vim.statusBarColors.searchinprogressmode": "",
     "vim.leader": " ",
     "vim.hlsearch": true,
+    "workbench.iconTheme": "material-icon-theme",
 }
