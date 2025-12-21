@@ -45,7 +45,7 @@ gc() {
 }
 alias   gr='git rebase'
 gpl() {
-    git stash push && git pull && git stash pop
+    git status && git stash push && git pull && git stash pop
 }
 alias  gph='git push'
 alias  gdf='git diff'
