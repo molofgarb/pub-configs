@@ -3,9 +3,9 @@
 - Rewrap
 
 ## Visual
-- Theme
+- Theme [Microsoft Marketplace]
 - Material Icon Theme
-- Glassit-vsc
+- ~~Glassit-vsc [only works on Windows and X11, not Wayland]~~
 
 ## Visual Helper
 - Todo Tree
@@ -16,14 +16,17 @@
 ## Source Control
 - GitLens
 
+## Remote Editing
+- Open Remote - SSH
+
 ## Languages
 ### Bash/Zsh
 - Shellcheck
 - Bash Debug
-- Zsh Debug
+- ~~Zsh Debug [Microsoft Marketplace]~~
 
 ### Python
-- Python
+- ~~(Microsoft) Python [Microsoft Marketplace]~~
 
 ### OCaml
 - OCaml Platform
