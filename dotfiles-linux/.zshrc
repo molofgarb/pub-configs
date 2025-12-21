@@ -44,7 +44,6 @@ gc() {
     git status && git add -A && git commit -sm "$1" && git pull && git push
 }
 alias   gr='git rebase'
-alias  gpl='git pull'
 gpl() {
     git stash push && git pull && git stash pop
 }
