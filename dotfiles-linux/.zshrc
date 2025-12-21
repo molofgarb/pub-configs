@@ -39,18 +39,20 @@ nvim-update() {
 
 # Git aliases
 alias 'git diff'='git diff --word-diff=color'
-gcommit() {
+gc() {
     if [ "$1" = "" ]; then return 1; fi
     git status && git add -A && git commit -sm "$1" && git pull && git push
 }
 alias   gr='git rebase'
 alias  gpl='git pull'
+gpl() {
+    git stash push && git pull && git stash pop
+}
 alias  gph='git push'
-alias gpsh='git push'
 alias  gdf='git diff'
 alias   gs='git status'
 
-# ===== Realiases =====
+# ===== Default Argument Aliases ======
 # Use eza instead of ls, or set nice defaults for ls
 if which eza > /dev/null; then 
   alias ls="eza -lh --icons --git --sort=type"
