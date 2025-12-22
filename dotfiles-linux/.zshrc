@@ -73,7 +73,7 @@ if which zoxide > /dev/null; then
 fi
 
 # Set nice defaults for grep
-alias grep='grep --color=auto'
+alias grep='grep -P --color=auto'
 
 # ssh rebind for ssh in kitty terminal if not in an ssh session
 if [[ "$TERM" = "xterm-kitty" ]] && ! [[ "$SSH_TTY" ]]; then
