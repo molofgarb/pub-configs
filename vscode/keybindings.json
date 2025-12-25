@@ -57,9 +57,9 @@
         "key": "ctrl+shift+c",
         "command": "-workbench.action.terminal.copySelection",
         "when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"
-    },
+    }, 
     {
-        "key": "ctrl+c",
+        "key": "ctrl+shift+c",
         "command": "workbench.action.terminal.copyAndClearSelection"
     }
 ]

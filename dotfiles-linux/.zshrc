@@ -7,6 +7,12 @@
 #   - zsh-completions
 #   - zsh-autosuggestions
 #   - vim-plug
+# These are nice-to-haves:
+#   - eza (for ls)
+#   - bat (for cat)
+#   - zoxide (for cd)
+
+set -euo pipefail
 
 # ==============================================================================
 # ===== CORE ===================================================================
@@ -76,7 +82,7 @@ fi
 alias grep='grep -P --color=auto'
 
 # ssh rebind for ssh in kitty terminal if not in an ssh session
-if [[ "$TERM" = "xterm-kitty" ]] && ! [[ "$SSH_TTY" ]]; then
+if [[ "$TERM" = "xterm-kitty" ]] && ! [[ -v SSH_CLIENT ]] && ! [[ -v SSH_TTY ]]; then
   alias ssh="kitty +kitten ssh"
 fi
 
