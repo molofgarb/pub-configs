@@ -35,5 +35,6 @@
     "window.zoomLevel": -1,
     "workbench.colorTheme": "Theme",
     "workbench.editor.enablePreview": false,
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "todo-tree.ripgrep.ripgrepArgs": "--max-columns=1000 --no-config"
 }

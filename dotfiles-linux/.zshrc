@@ -186,15 +186,15 @@ if [ "$(uname)" = "Linux" ] && \
    [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
 then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+    zsh_syntax_highlighting_enabled=true
 fi
 if [ "$(uname)" = "Darwin" ] && \
    [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
 then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    ZSH_SYNTAX_HIGHLIGHTING_ENABLED=1
+    zsh_syntax_highlighting_enabled=true
 fi
-if [ $ZSH_SYNTAX_HIGHLIGHTING_ENABLED ]; then
+if [ -v zsh_syntax_highlighting_enabled ]; then
     ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
     ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
