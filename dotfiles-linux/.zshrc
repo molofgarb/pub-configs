@@ -54,6 +54,7 @@ gpl() {
 alias  gph='git push'
 alias  gdf='git diff'
 alias   gs='git status'
+alias   gl='git log'
 
 # ===== Default Argument Aliases ======
 # Use eza instead of ls, or set nice defaults for ls
