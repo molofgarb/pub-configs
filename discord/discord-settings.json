@@ -13,5 +13,6 @@
   },
   "OPEN_ON_STARTUP": false,
   "enableHardwareAcceleration": true,
-  "asyncVideoInputDeviceInit": false
+  "asyncVideoInputDeviceInit": false,
+  "MINIMIZE_TO_TRAY": false
 }
