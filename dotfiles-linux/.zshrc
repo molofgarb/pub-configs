@@ -100,20 +100,22 @@ prompt_git_branch() {
 NEWLINE=$'\n'
 PROMPT_ROOT=(
   '%F{red}%n@%m%f'
-  '%F{orange}%d%f'
-  '%F{blue}%?%f'
-  '%F{cyan}$(prompt_git_branch)%f'
-  '${NEWLINE}%F{green}\$%f '
+  '%F{yellow}%d%f'
+  '%F{cyan}%?%f'
+  '%F{magenta}${date +"%H:%M:%S"}%f'
+  '%F{blue}$(prompt_git_branch)%f'
+  '${NEWLINE}%F{green}\#%f '
 )
 PROMPT_USER=(
   '%F{green}%n@%m%f'
   '%F{yellow}%d%f'
-  '%F{blue}%?%f'
-  '%F{cyan}$(prompt_git_branch)%f'
+  '%F{cyan}%?%f'
+  '%F{magenta}%*%f'
+  '%F{blue}$(prompt_git_branch)%f'
   '${NEWLINE}%F{green}\$%f '
 )
 
-if [ "$USER" = "root" ]; then PROMPT=${PROMPT_ROOT[*]}; else PROMPT=${PROMPT_USER[@]}; fi
+if [ "$USER" = "root" ]; then PROMPT=${PROMPT_ROOT[@]}; else PROMPT=${PROMPT_USER[@]}; fi
 
 # ===== Zsh options =====
 # aliases: expands aliases in noninteractive shell

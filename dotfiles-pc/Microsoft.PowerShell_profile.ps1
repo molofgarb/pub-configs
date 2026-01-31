@@ -1,17 +1,48 @@
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
-Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+$LASTEXITCODE = 0
 
-function prompt {
-    $gitStatus = if ($(git status 2> $null)) { "`e[91m:" + (git rev-parse --abbrev-ref HEAD) }
-    Write-Host "`e[92m$env:username@$(($env:computername).ToLower()) `e[93m$($pwd.Path)$gitStatus `e[36m$LastExitCode"
+[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
+
+Import-Module PSReadLine
+Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineKeyHandler -Key Tab     -Function Complete
+Set-PSReadLineKeyHandler -Key Tab     -Function MenuComplete
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineOption -Colors @{
+    Parameter = [System.ConsoleColor]::DarkRed
+    Operator  = [System.ConsoleColor]::DarkRed
+}
+
+# Default to Windows, have this to make Linux environment compatible
+if ($IsLinux) {
+    $env:COMPUTERNAME = (Get-Content -Raw '/etc/hostname').trim()
+    $env:USERNAME = $env:USER
+    $env:HISTORY = '~/.local/share/powershell/PSReadLine/ConsoleHost_history.txt'
+}
+
+# TODO: SEt-PSReadlineKeyHandler for fzf here
+# TODO: show history as you type thing
+
+function Prompt {
+    $gitStatus = if (git status 2> $null) { git rev-parse --abbrev-ref HEAD }
+    Write-Host (
+        "`e[32m$env:USERNAME@$(($env:COMPUTERNAME).ToLower())`e[31m:pwsh " +
+        "`e[33m$($pwd.Path) " + 
+        "`e[36m$LastExitCode " + 
+        "`e[35m$(Get-Date -Format hh:mm:ss) " +
+        "`e[34m$gitStatus"
+    )
     return "`e[92m$ `e[37m"
 }
 
-function profile-update {
-    (curl -w '%{http_code}\n' https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/refs/heads/main/dotfiles-pc/Microsoft.PowerShell_profile.ps1 -o NUL) -contains '200'
-    curl https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/refs/heads/main/dotfiles-pc/Microsoft.PowerShell_profile.ps1 -o ~\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-    & $profile
+function Update-Profile {
+    $profileUri = 'https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/refs/heads/main/dotfiles-pc/Microsoft.PowerShell_profile.ps1'
+    $result = Invoke-WebRequest -Uri $profileUri
+    if ($result.StatusCode -eq 200) {
+        $result.Content > $profile
+        . $profile
+    }
 }
 
-. ~\Documents\PowerShell\Microsoft.PowerShell_profile_local.ps1
+# TODO: add this
+# . ~\Documents\PowerShell\Microsoft.PowerShell_profile_local.ps1
