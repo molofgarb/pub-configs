@@ -1,13 +1,14 @@
 $LASTEXITCODE = 0
+if (-not $env:USERNAME -and $env:USER) { $env:USERNAME = $env:USER }
 
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
 
 Import-Module PSReadLine
 Set-PSReadLineOption -PredictionViewStyle ListView
-Set-PSReadLineKeyHandler -Key Tab     -Function Complete
-Set-PSReadLineKeyHandler -Key Tab     -Function MenuComplete
-Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key Tab       -Function MenuComplete
+Set-PSReadLineKeyHandler -Key UpArrow   -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineOption -EditMode Windows
 Set-PSReadLineOption -Colors @{
     Parameter = [System.ConsoleColor]::DarkRed
     Operator  = [System.ConsoleColor]::DarkRed

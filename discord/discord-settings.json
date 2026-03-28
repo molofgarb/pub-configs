@@ -9,10 +9,12 @@
     "x": 2560,
     "y": 1561,
     "width": 1440,
-    "height": 998
+    "height": 999
   },
   "OPEN_ON_STARTUP": false,
   "enableHardwareAcceleration": true,
   "asyncVideoInputDeviceInit": false,
-  "MINIMIZE_TO_TRAY": false
+  "MINIMIZE_TO_TRAY": false,
+  "openH264Enabled": true,
+  "enableLibOpenH264Electron": true
 }
