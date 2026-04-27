@@ -163,9 +163,9 @@ DIRSTACKSIZE=60
 fignore=(\~)
 LISTMAX=0
 LOGCHECK=60
-HISTSIZE=20000
-HISTFILE=~/.zsh_history
-SAVEHIST=30000000
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh/.zsh_history
 watch=(all)
 TIMEFMT='%J  %*U user %*S system %P cpu (%*E wasted time).'
 WATCHFMT='%n %a %l from %m at %t.'
@@ -182,7 +182,7 @@ if [ "$(command -v fzf)" ]; then
     source <(fzf --zsh)
 fi
 
-# zsh-yntax-highlighting
+# zsh-syntax-highlighting
 if [ "$(uname)" = "Linux" ] && \
    [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
 then
@@ -204,21 +204,9 @@ fi
 
 # zsh-completions
 autoload -Uz compinit
+autoload -U colors && colors
 compinit
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-if [[ -v LS_COLORS ]]; then zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}; fi
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+_comp_options+=(globdots)
 
 # zsh-autosuggestions
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then

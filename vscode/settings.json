@@ -40,5 +40,7 @@
     "workbench.startupEditor": "none",
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.suggest.quickSuggestions": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "git.enableSmartCommit": true,
+    "workbench.statusBar.experimental.fontSize": 14
 }
