@@ -61,7 +61,6 @@ else
     alias la='ls -ah'
 fi
 if which bat > /dev/null; then alias cat='bat'; fi
-if which zoxide > /dev/null; then eval "$(zoxide init zsh)"; alias cd='z'; fi
 
 # Set nice defaults for grep
 alias grep='grep -P --color=auto'
@@ -231,6 +230,9 @@ fi
 # ==============================================================================
 # ===== Miscellaneous ==========================================================
 # ==============================================================================
+
+# Needs to be near the bottom of the file otherwise other plugin stuff makes it complain
+if which zoxide > /dev/null; then eval "$(zoxide init zsh)"; alias cd='z'; fi
 
 # For VSCodium to recognize the current git branch
 cd .
