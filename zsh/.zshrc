@@ -2,10 +2,10 @@
 # shellcheck disable=SC1071
 # molofgarb's zshrc
 # you probably need to install:
-#   - fzf
 #   - zsh-syntax-highlighting
-#   - zsh-completions
 #   - zsh-autosuggestions
+#   - zsh-autocomplete
+#   - fzf
 #   - vim-plug
 # These are nice-to-haves:
 #   - eza (for ls)
@@ -26,19 +26,19 @@ alias reload="source $ZSHRC_PATH"
 alias zshrc="$EDITOR $ZSHRC_PATH"
 alias zshrc_local="$EDITOR $(dirname $ZSHRC_PATH)/.zsh/.zshrc_local"
 zshrc-update() {
-  local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/zsh/.zshrc'
-  if curl $zshrc_url > /dev/null; then
-    curl $zshrc_url -H 'Cache-Control: no-cache, no-store' -o ~/.zshrc 
-    reload
-  fi
+    local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/zsh/.zshrc'
+    if curl $zshrc_url > /dev/null; then
+        curl $zshrc_url -H 'Cache-Control: no-cache, no-store' -o ~/.zshrc 
+        reload
+    fi
 }
 nvim-update() {
-  local initvim_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/neovim/init.vim'
-  if curl $initvim_url > /dev/null; then
-    mkdir -p ~/.config/nvim 
-    curl $initvim_url -H 'Cache-Control: no-cache, no-store' -o ~/.config/nvim/init.vim
-    reload
-  fi
+    local initvim_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/neovim/init.vim'
+    if curl $initvim_url > /dev/null; then
+        mkdir -p ~/.config/nvim 
+        curl $initvim_url -H 'Cache-Control: no-cache, no-store' -o ~/.config/nvim/init.vim
+        reload
+    fi
 }
 
 # Git aliases
@@ -61,11 +61,11 @@ alias   gl='git log'
 # Use bat instead of cat
 # Use zoxide instead of cd
 if which eza > /dev/null; then 
-  alias ls="eza -lh --icons --git --sort=type"
-  alias la="eza -alh --icons --git --sort=type"
+    alias ls="eza -lh --icons --git --sort=type"
+    alias la="eza -alh --icons --git --sort=type"
 else
-  alias ls='ls --color=auto --group-directories-first -lh'
-  alias la='ls -ah'
+    alias ls='ls --color=auto --group-directories-first -lh'
+    alias la='ls -ah'
 fi
 if which bat > /dev/null; then alias cat='bat'; fi
 if which zoxide > /dev/null; then eval "$(zoxide init zsh)"; alias cd='z'; fi
@@ -75,7 +75,7 @@ alias grep='grep -P --color=auto'
 
 # ssh rebind for ssh in kitty terminal if not in an ssh session
 if [[ "$TERM" = "xterm-kitty" ]] && ! [[ -v SSH_CLIENT ]] && ! [[ -v SSH_TTY ]]; then
-  alias ssh="kitty +kitten ssh"
+    alias ssh="kitty +kitten ssh"
 fi
 
 # ===== Keybinds =====
@@ -92,20 +92,20 @@ prompt_git_branch() {
 }
 NEWLINE=$'\n'
 PROMPT_ROOT=(
-  '%F{red}%n@%m%f'
-  '%F{yellow}%d%f'
-  '%F{cyan}%?%f'
-  '%F{magenta}${date +"%H:%M:%S"}%f'
-  '%F{blue}$(prompt_git_branch)%f'
-  '${NEWLINE}%F{green}\#%f '
+    '%F{red}%n@%m%f'
+    '%F{yellow}%d%f'
+    '%F{cyan}%?%f'
+    '%F{magenta}${date +"%H:%M:%S"}%f'
+    '%F{blue}$(prompt_git_branch)%f'
+    '${NEWLINE}%F{green}\#%f '
 )
 PROMPT_USER=(
-  '%F{green}%n@%m%f'
-  '%F{yellow}%d%f'
-  '%F{cyan}%?%f'
-  '%F{magenta}%*%f'
-  '%F{blue}$(prompt_git_branch)%f'
-  '${NEWLINE}%F{green}\$%f '
+    '%F{green}%n@%m%f'
+    '%F{yellow}%d%f'
+    '%F{cyan}%?%f'
+    '%F{magenta}%*%f'
+    '%F{blue}$(prompt_git_branch)%f'
+    '${NEWLINE}%F{green}\$%f '
 )
 
 if [ "$USER" = "root" ]; then PROMPT=${PROMPT_ROOT[@]}; else PROMPT=${PROMPT_USER[@]}; fi
@@ -170,10 +170,6 @@ cd .
 # ==============================================================================
 # ===== Plugins ================================================================ 
 # ==============================================================================
-# fzf
-if [ "$(command -v fzf)" ]; then
-    source <(fzf --zsh)
-fi
 
 # zsh-syntax-highlighting
 if [ "$(uname)" = "Linux" ] && \
@@ -195,15 +191,19 @@ if [ -v zsh_syntax_highlighting_enabled ]; then
     ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
 fi
 
-# zsh-completions
-autoload -Uz compinit
-autoload -U colors && colors
-compinit
-_comp_options+=(globdots)
-
 # zsh-autosuggestions
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# zsh-autocomplete
+if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
+    source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi
+
+# fzf (this overrides some settings/binds in zsh-autocomplete)
+if [ "$(command -v fzf)" ]; then
+    source <(fzf --zsh)
 fi
 
 # ==============================================================================
