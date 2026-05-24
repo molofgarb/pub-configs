@@ -41,22 +41,15 @@ nvim-update() {
     fi
 }
 
-# Git aliases
-alias 'git diff'='git diff --word-diff=color'
-gc() {
-    if [ "$1" = "" ]; then return 1; fi
-    git status && git add -A && git commit -sm "$1" && git pull && git push
-}
-alias   gr='git rebase'
-gpl() {
-    git status && git stash push && git pull && git stash pop
-}
-alias  gph='git push'
-alias  gdf='git diff'
-alias   gs='git status'
-alias   gl='git log'
+# Pre-load an optional pre-local file to execute/set vars in case they need to 
+# be set before this file gets sourced
+if [[ -f ~/.zsh/.zshrc_pre_local ]]; then
+    source ~/.zsh/.zshrc_pre_local
+else
 
-# ===== Default Argument Aliases ======
+# ==============================================================================
+# ===== Program Aliases ========================================================
+# ==============================================================================
 # Use eza instead of ls, or set nice defaults for ls
 # Use bat instead of cat
 # Use zoxide instead of cd
@@ -78,7 +71,25 @@ if [[ "$TERM" = "xterm-kitty" ]] && ! [[ -v SSH_CLIENT ]] && ! [[ -v SSH_TTY ]];
     alias ssh="kitty +kitten ssh"
 fi
 
-# ===== Keybinds =====
+# Git aliases
+alias 'git diff'='git diff --word-diff=color'
+gc() {
+    if [ "$1" = "" ]; then return 1; fi
+    git status && git add -A && git commit -sm "$1" && git pull && git push
+}
+alias   gr='git rebase'
+gpl() {
+    git status && git stash push && git pull && git stash pop
+}
+alias  gph='git push'
+alias  gdf='git diff'
+alias   gs='git status'
+alias   gl='git log'
+
+
+# ==============================================================================
+# ===== Keybinds ===============================================================
+# ==============================================================================
 bindkey -e
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
@@ -86,7 +97,9 @@ bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
 bindkey '^[[3~' delete-char
 
-# ===== Prompt =====
+# ==============================================================================
+# ===== Prompt =================================================================
+# ==============================================================================
 prompt_git_branch() {
     git symbolic-ref --short HEAD 2> /dev/null 
 }
@@ -110,7 +123,9 @@ PROMPT_USER=(
 
 if [ "$USER" = "root" ]; then PROMPT=${PROMPT_ROOT[@]}; else PROMPT=${PROMPT_USER[@]}; fi
 
-# ===== Zsh options =====
+# ==============================================================================
+# ===== Options ================================================================
+# ==============================================================================
 # aliases: expands aliases in noninteractive shell
 setopt \
   aliases \
@@ -164,9 +179,6 @@ TIMEFMT='%J  %*U user %*S system %P cpu (%*E wasted time).'
 WATCHFMT='%n %a %l from %m at %t.'
 WORDCHARS="${WORDCHARS:s#/#}"
 
-# For VSCodium to recognize the current git branch
-cd .
-
 # ==============================================================================
 # ===== Plugins ================================================================ 
 # ==============================================================================
@@ -210,8 +222,15 @@ fi
 # ===== zshrc_local override ===================================================
 # ==============================================================================
 
-if [ -f ~/.zsh/.zshrc_local ]; then
+if [[ -f ~/.zsh/.zshrc_local ]]; then
     source ~/.zsh/.zshrc_local
 else
     echo ~/.zsh/.zshrc_local not found
 fi
+
+# ==============================================================================
+# ===== Miscellaneous ==========================================================
+# ==============================================================================
+
+# For VSCodium to recognize the current git branch
+cd .
