@@ -45,7 +45,7 @@ nvim-update() {
 # be set before this file gets sourced
 if [[ -f ~/.zsh/.zshrc_pre_local ]]; then
     source ~/.zsh/.zshrc_pre_local
-else
+fi
 
 # ==============================================================================
 # ===== Program Aliases ========================================================
