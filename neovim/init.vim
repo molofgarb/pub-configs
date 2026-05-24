@@ -9,29 +9,25 @@ set number
 set relativenumber
 
 " Indentation settings
-set autoindent
 filetype plugin indent on
-set tabstop=2
-set softtabstop=2
+set autoindent
+set backspace=indent,eol,start " Intuitive backspace behavior.
+set clipboard=unnamedplus      " Yank and paste to system clipboard
+set expandtab                  " Turn tabs into spaces
+set hidden                     " Possibility to have more than one unsaved buffers.
+set hlsearch                   " Highlight search results
 set shiftwidth=2
-set hlsearch "highlight search results
-set expandtab "turn tabs into spaces
+set so=999                     " Scrolloff (keep cursor centered)
+set softtabstop=2
+set tabstop=2
+set ttyfast                    " Less lag when scrolling?
+set wildmenu                   " Great command-line completion, use `<Tab>` to move
+                               " around and `<CR>` to validate.
+syntax on                      " Syntax highlighting
 
 " Rulers
 set cc=80
 set cc=100
-
-" Scrolloff (keep cursor centered)
-set so=999
-
-" Syntax highlighting
-syntax on
-
-" Less lag when scrolling?
-set ttyfast
-
-" Yank and paste to system clipboard
-set clipboard=unnamedplus
 
 " Swap p and P to not override unnamed register when pasting with p
 xnoremap p P

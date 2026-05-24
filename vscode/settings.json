@@ -33,7 +33,7 @@
     "vim.statusBarColors.searchinprogressmode": "",
     "vim.useSystemClipboard": true,
     "window.zoomLevel": -1,
-    "workbench.colorTheme": "Theme",
+    "workbench.colorTheme": "Theme Darker",
     "workbench.iconTheme": "material-icon-theme",
     "todo-tree.ripgrep.ripgrepArgs": "--max-columns=1000 --no-config",
     "workbench.tree.indent": 20,

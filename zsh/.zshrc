@@ -26,14 +26,14 @@ alias reload="source $ZSHRC_PATH"
 alias zshrc="$EDITOR $ZSHRC_PATH"
 alias zshrc_local="$EDITOR $(dirname $ZSHRC_PATH)/.zsh/.zshrc_local"
 zshrc-update() {
-  local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/.zshrc'
+  local zshrc_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/zsh/.zshrc'
   if curl $zshrc_url > /dev/null; then
     curl $zshrc_url -H 'Cache-Control: no-cache, no-store' -o ~/.zshrc 
     reload
   fi
 }
 nvim-update() {
-  local initvim_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/dotfiles-linux/init.vim'
+  local initvim_url='https://raw.githubusercontent.com/molofgarb/molofgarb-system-scripts/main/neovim/init.vim'
   if curl $initvim_url > /dev/null; then
     mkdir -p ~/.config/nvim 
     curl $initvim_url -H 'Cache-Control: no-cache, no-store' -o ~/.config/nvim/init.vim
@@ -58,6 +58,8 @@ alias   gl='git log'
 
 # ===== Default Argument Aliases ======
 # Use eza instead of ls, or set nice defaults for ls
+# Use bat instead of cat
+# Use zoxide instead of cd
 if which eza > /dev/null; then 
   alias ls="eza -lh --icons --git --sort=type"
   alias la="eza -alh --icons --git --sort=type"
@@ -65,17 +67,8 @@ else
   alias ls='ls --color=auto --group-directories-first -lh'
   alias la='ls -ah'
 fi
-
-# Use bat instead of cat
-if which bat > /dev/null; then 
-  alias cat='bat'
-fi
-
-# Use zoxide instead of cd
-if which zoxide > /dev/null; then
-  eval "$(zoxide init zsh)"
-  alias cd='z'
-fi
+if which bat > /dev/null; then alias cat='bat'; fi
+if which zoxide > /dev/null; then eval "$(zoxide init zsh)"; alias cd='z'; fi
 
 # Set nice defaults for grep
 alias grep='grep -P --color=auto'
