@@ -42,5 +42,10 @@
     "terminal.integrated.suggest.quickSuggestions": true,
     "editor.formatOnSave": true,
     "git.enableSmartCommit": true,
-    "workbench.statusBar.experimental.fontSize": 14
+    "workbench.statusBar.experimental.fontSize": 14,
+    "vim.enableNeovim": true,
+    "vim.neovimUseConfigFile": true,
+    "files.associations": {
+        "*.service": "ini"
+    }
 }

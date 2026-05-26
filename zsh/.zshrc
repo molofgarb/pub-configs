@@ -209,12 +209,22 @@ fi
 # zsh-autocomplete
 if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+    # Make Tab and ShiftTab go to the menu
     bindkey              '^I' menu-select
     bindkey "$terminfo[kcbt]" menu-select
+    # Make Tab and ShiftTab change the selection in the menu
     bindkey -M menuselect              '^I'         menu-complete
     bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
+    # Make ← and → always move the cursor on the command line
     bindkey -M menuselect  '^[[D' .backward-char  '^[OD' .backward-char
     bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
+
+    # Make Enter submit the command line straight from the menu
+    bindkey -M menuselect '\r' .accept-line
+
+    # Don't add a semicolon after history completions
+    zstyle ':autocomplete:*' add-semicolon no
 fi
 
 # fzf (this overrides some settings/binds in zsh-autocomplete)
