@@ -210,18 +210,23 @@ fi
 if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
+    # Keybindings below are set to emulate a pwsh MenuComplete-like feel
     # Make Tab and ShiftTab go to the menu
     bindkey              '^I' menu-select
     bindkey "$terminfo[kcbt]" menu-select
-    # Make Tab and ShiftTab change the selection in the menu
-    bindkey -M menuselect              '^I'         menu-complete
-    bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
-    # Make ← and → always move the cursor on the command line
-    bindkey -M menuselect  '^[[D' .backward-char  '^[OD' .backward-char
-    bindkey -M menuselect  '^[[C'  .forward-char  '^[OC'  .forward-char
+    
+    # Make Ctrl + ← or → always move the cursor on the command line (not the non-Ctrl ones)
+    bindkey -M menuselect  '^[[1;5D' .backward-word  '^[OD' .backward-word
+    bindkey -M menuselect  '^[[1;5C' .forward-word   '^[OD' .forward-word
 
-    # Make Enter submit the command line straight from the menu
-    bindkey -M menuselect '\r' .accept-line
+    # Keep up and down as their default bindings
+    bindkey \
+    "^P"    .up-line-or-history \
+    "^[OA"  .up-line-or-history \
+    "^[[A"  .up-line-or-history \
+    "^N"    .down-line-or-history \
+    "^[OB"  .down-line-or-history \
+    "^[[B"  .down-line-or-history \
 
     # Don't add a semicolon after history completions
     zstyle ':autocomplete:*' add-semicolon no

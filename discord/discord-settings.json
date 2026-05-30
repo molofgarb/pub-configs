@@ -7,9 +7,9 @@
   "IS_MINIMIZED": false,
   "WINDOW_BOUNDS": {
     "x": 2560,
-    "y": 1547,
+    "y": 1536,
     "width": 1440,
-    "height": 1013
+    "height": 1024
   },
   "OPEN_ON_STARTUP": false,
   "enableHardwareAcceleration": true,
