@@ -11,6 +11,13 @@ set relativenumber
 " Indentation settings
 filetype plugin indent on
 set autoindent
+
+" Remaps
+xnoremap p P
+"keep visual mode after indent 
+vnoremap > >gv                 
+vnoremap < <gv
+
 set backspace=indent,eol,start " Intuitive backspace behavior.
 set clipboard=unnamedplus      " Yank and paste to system clipboard
 set expandtab                  " Turn tabs into spaces

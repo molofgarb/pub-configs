@@ -50,5 +50,9 @@
     },
     "workbench.activityBar.location": "top",
     "editor.smoothScrolling": true,
-    "terminal.integrated.smoothScrolling": true
+    "terminal.integrated.smoothScrolling": true,
+    "vim.vimrc.enable": true,
+    "workbench.editor.autoLockGroups": {
+        "terminalEditor": false
+    }
 }
