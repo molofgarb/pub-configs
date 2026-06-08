@@ -47,5 +47,8 @@
     "vim.neovimUseConfigFile": true,
     "files.associations": {
         "*.service": "ini"
-    }
+    },
+    "workbench.activityBar.location": "top",
+    "editor.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true
 }
