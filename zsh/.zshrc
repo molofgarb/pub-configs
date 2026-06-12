@@ -214,10 +214,6 @@ if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]];
     # Make Tab and ShiftTab go to the menu
     bindkey              '^I' menu-select
     bindkey "$terminfo[kcbt]" menu-select
-
-    # Make Tab and ShiftTab change the selection in the menu
-    bindkey -M menuselect              '^I'         menu-complete
-    bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
     
     # Make Ctrl + ← or → always move the cursor on the command line (not the non-Ctrl ones)
     bindkey -M menuselect  '^[[1;5D' .backward-word  '^[OD' .backward-word
