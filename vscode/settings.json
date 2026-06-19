@@ -55,5 +55,6 @@
     "vim.vimrc.enable": true,
     "workbench.editor.autoLockGroups": {
         "terminalEditor": false
-    }
+    },
+    "powershell.promptToUpdatePowerShell": false
 }
