@@ -181,20 +181,25 @@ WORDCHARS="${WORDCHARS:s#/#}"
 # ===== Plugins ================================================================ 
 # ==============================================================================
 
+_zsh_syntax_highlighting_plugin_enabled=false
+_zsh_autosuggestions_plugin_enabled=false
+_zsh_autocomplete_plugin_enabled=false
+_zsh_fzf_plugin_enabled=false
+
 # zsh-syntax-highlighting
 if [ "$(uname)" = "Linux" ] && \
    [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
 then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh_syntax_highlighting_enabled=true
+    _zsh_syntax_highlighting_plugin_enabled=true
 fi
 if [ "$(uname)" = "Darwin" ] && \
    [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
 then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh_syntax_highlighting_enabled=true
+    _zsh_syntax_highlighting_plugin_enabled=true
 fi
-if [ -v zsh_syntax_highlighting_enabled ]; then
+if [ -v _zsh_syntax_highlighting_plugin_enabled ]; then
     ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
     ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
@@ -204,16 +209,22 @@ fi
 # zsh-autosuggestions
 if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    _zsh_autosuggestions_plugin_enabled=true
 fi
 
 # zsh-autocomplete
 if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
     source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+    _zsh_autocomplete_plugin_enabled=true
 
     # Keybindings below are set to emulate a pwsh MenuComplete-like feel
     # Make Tab and ShiftTab go to the menu
     bindkey              '^I' menu-select
     bindkey "$terminfo[kcbt]" menu-select
+
+    # Make Tab and ShiftTab change the selection in the menu
+    bindkey -M menuselect              '^I'         menu-complete
+    bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
     
     # Make Ctrl + ← or → always move the cursor on the command line (not the non-Ctrl ones)
     bindkey -M menuselect  '^[[1;5D' .backward-word  '^[OD' .backward-word
@@ -235,7 +246,13 @@ fi
 # fzf (this overrides some settings/binds in zsh-autocomplete)
 if [ "$(command -v fzf)" ]; then
     source <(fzf --zsh)
+    _zsh_fzf_plugin_enabled=true
 fi
+
+zshrc-plugin-diagnostic() {
+# Reports whether plugins were loaded
+    set | grep -Pi '_zsh_.*_plugin_enabled'
+}
 
 # ==============================================================================
 # ===== zshrc_local override ===================================================

@@ -6,15 +6,20 @@
   "IS_MAXIMIZED": false,
   "IS_MINIMIZED": false,
   "WINDOW_BOUNDS": {
-    "x": 2560,
-    "y": 1536,
+    "x": 16,
+    "y": 10,
     "width": 1440,
-    "height": 1024
+    "height": 1005
   },
   "OPEN_ON_STARTUP": false,
   "enableHardwareAcceleration": true,
   "asyncVideoInputDeviceInit": false,
   "MINIMIZE_TO_TRAY": false,
   "openH264Enabled": true,
-  "enableLibOpenH264Electron": true
+  "enableLibOpenH264Electron": true,
+  "DESKTOP_TTI_DNSTCP_WARMUP": true,
+  "DESKTOP_TTI_EARLY_UPDATE_CHECK": true,
+  "DESKTOP_TTI_UPDATE_BACKOFF_MAX_MS": 20000,
+  "DESKTOP_TTI_REMOVE_V8_CACHE_CLEAR": true,
+  "DESKTOP_TTI_SPLASH_USE_WEBP": true
 }

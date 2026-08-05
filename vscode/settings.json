@@ -56,5 +56,7 @@
     "workbench.editor.autoLockGroups": {
         "terminalEditor": false
     },
-    "powershell.promptToUpdatePowerShell": false
+    "powershell.promptToUpdatePowerShell": false,
+    "yaml.format.bracketSpacing": false,
+    "todo-tree.ripgrep.ripgrep": "/usr/bin/rg"
 }

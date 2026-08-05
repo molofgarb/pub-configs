@@ -100,4 +100,17 @@
         "command": "-workbench.action.terminal.sendSequence",
         "when": "terminalFocus"
     },
+    {
+        "key": "ctrl+x",
+        "command": "-extension.vim_ctrl+x",
+        "when": "editorTextFocus && vim.active && vim.use<C-x> && !inDebugRepl"
+    },
+    {
+        "key": "alt+x",
+        "command": "extension.vim_ctrl+x"
+    },
+    {
+        "key": "alt+a",
+        "command": "extension.vim_ctrl+a"
+    },
 ]
