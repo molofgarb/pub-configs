@@ -58,5 +58,6 @@
     },
     "powershell.promptToUpdatePowerShell": false,
     "yaml.format.bracketSpacing": false,
-    "todo-tree.ripgrep.ripgrep": "/usr/bin/rg"
+    "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
+    "workbench.editor.focusRecentEditorAfterClose": false
 }

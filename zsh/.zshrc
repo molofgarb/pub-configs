@@ -199,7 +199,7 @@ then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     _zsh_syntax_highlighting_plugin_enabled=true
 fi
-if [ "$_zsh_syntax_highlighting_plugin_enabled" = 'true' ]]; then
+if [[ "$_zsh_syntax_highlighting_plugin_enabled" = 'true' ]]; then
     ZSH_HIGHLIGHT_STYLES[arg0]=fg=yellow
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
     ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
