@@ -187,14 +187,18 @@ _zsh_autocomplete_plugin_enabled=false
 _zsh_fzf_plugin_enabled=false
 
 # zsh-syntax-highlighting
-if [ "$(uname)" = "Linux" ] && \
-   [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
+if [[ "$(uname)" = "Linux" ]] && \
+   [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]
 then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     _zsh_syntax_highlighting_plugin_enabled=true
-fi
-if [ "$(uname)" = "Darwin" ] && \
-   [ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
+elif [[ "$(uname)" = "Linux" ]] && \
+     [[ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]
+then
+    source "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    _zsh_syntax_highlighting_plugin_enabled=true
+elif [ "$(uname)" = "Darwin" ] && \
+     [[ -f "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]
 then
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     _zsh_syntax_highlighting_plugin_enabled=true
@@ -207,8 +211,15 @@ if [[ "$_zsh_syntax_highlighting_plugin_enabled" = 'true' ]]; then
 fi
 
 # zsh-autosuggestions
-if [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+if  [[ "$(uname)" = "Linux" ]] && \
+    [[ -f '/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' ]]
+then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    _zsh_autosuggestions_plugin_enabled=true
+elif [[ "$(uname)" = "Linux" ]] && \
+     [[ -f "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]
+then
+    source "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
     _zsh_autosuggestions_plugin_enabled=true
 fi
 
