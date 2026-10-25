@@ -32,7 +32,7 @@
     "vim.statusBarColors.searchinprogressmode": "",
     "vim.useSystemClipboard": true,
     "window.zoomLevel": -1,
-    "workbench.colorTheme": "Theme Darker",
+    "workbench.colorTheme": "Dark+",
     "workbench.iconTheme": "material-icon-theme",
     "todo-tree.ripgrep.ripgrepArgs": "--max-columns=1000 --no-config",
     "workbench.tree.indent": 20,
@@ -47,7 +47,9 @@
     "files.associations": {
         "*.service": "ini",
         "*.timer": "ini",
-        "*.crontab": "shellscript"
+        "*.crontab": "shellscript",
+        "*.mount": "ini",
+        "services": "dotenv"
     },
     "workbench.activityBar.location": "top",
     "editor.smoothScrolling": true,
@@ -59,5 +61,6 @@
     "powershell.promptToUpdatePowerShell": false,
     "yaml.format.bracketSpacing": false,
     "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
-    "workbench.editor.focusRecentEditorAfterClose": false
+    "workbench.editor.focusRecentEditorAfterClose": false,
+    "todo-tree.filtering.includeHiddenFiles": true
 }

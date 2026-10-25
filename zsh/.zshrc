@@ -208,6 +208,7 @@ if [[ "$_zsh_syntax_highlighting_plugin_enabled" = 'true' ]]; then
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white
     ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=green
     ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=green
+    ZSH_HIGHLIGHT_STYLES[comment]=fg=white                  # or unfinished variable
 fi
 
 # zsh-autosuggestions
@@ -255,7 +256,7 @@ if [[ -f /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]];
 fi
 
 # fzf (this overrides some settings/binds in zsh-autocomplete)
-if [ "$(command -v fzf)" ]; then
+if [[ "$(command -v fzf)" ]]; then
     source <(fzf --zsh)
     _zsh_fzf_plugin_enabled=true
 fi
